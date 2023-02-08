@@ -1,4 +1,5 @@
-﻿using BookStore.API.BookOperations.CreateBook;
+﻿using AutoMapper;
+using BookStore.API.BookOperations.CreateBook;
 using BookStore.API.BookOperations.DeleteBook;
 using BookStore.API.BookOperations.GetBookDetail;
 using BookStore.API.BookOperations.GetBooks;
@@ -16,10 +17,11 @@ namespace BookStore.API.Controllers
     public class BookController : ControllerBase
     {
         private readonly BookStoreDBContext _context;
-
-        public BookController(BookStoreDBContext context)
+        private readonly IMapper _mapper;
+        public BookController(BookStoreDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         private static List<Book> BookList = new List<Book>()
@@ -29,7 +31,7 @@ namespace BookStore.API.Controllers
         [HttpGet]
         public IActionResult GetBooks()
         {
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context,_mapper);
             var result = query.Handle();
             return Ok(result);
         }
@@ -40,7 +42,7 @@ namespace BookStore.API.Controllers
             BookDetailViewModel result;
             try
             {
-                GetBookDetailQuery query = new GetBookDetailQuery(_context);
+                GetBookDetailQuery query = new GetBookDetailQuery(_context,_mapper);
                 query.BookId = id;
                 result=query.Handle();
             }
@@ -64,7 +66,7 @@ namespace BookStore.API.Controllers
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            CreateBookCommand command = new CreateBookCommand(_context);
+            CreateBookCommand command = new CreateBookCommand(_context,_mapper);
             try
             {
                 command.Model = newBook;
