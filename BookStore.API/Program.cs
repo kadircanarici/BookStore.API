@@ -1,4 +1,5 @@
 using BookStore.API.DBOperations;
+using BookStore.API.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<BookStoreDBContext>(Options=>Options.UseInMemoryDatabase(databaseName:"BookStoreDB"));
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
@@ -32,6 +34,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+//middleware
+app.UseCustomExceptionMiddle();
 
 app.MapControllers();
 
