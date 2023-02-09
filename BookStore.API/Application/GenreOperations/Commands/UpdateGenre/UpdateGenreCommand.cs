@@ -23,7 +23,7 @@ namespace BookStore.API.Application.GenreOperations.Commands.UpdateGenre
             if (_context.Genres.Any(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != GenreId))
                 throw new InvalidOperationException("Aynı isimli bir kitap türü zaten mevcut.");
 
-            genre.Name = Model.Name.Trim() == default ? Model.Name : genre.Name;
+            genre.Name = string.IsNullOrEmpty(Model.Name.Trim()) ? genre.Name : Model.Name;
             genre.isActive= Model.isActive;
             _context.SaveChanges();
         }
