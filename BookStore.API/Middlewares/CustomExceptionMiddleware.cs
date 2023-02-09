@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BookStore.API.Services;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection.Metadata;
@@ -8,10 +9,11 @@ namespace BookStore.API.Middlewares
     public class CustomExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-
-        public CustomExceptionMiddleware(RequestDelegate next)
+        private readonly ILoggerService _loggerService;
+        public CustomExceptionMiddleware(RequestDelegate next, ILoggerService loggerService)
         {
             _next = next;
+            _loggerService = loggerService;
         }
         public async Task Invoke(HttpContext context)
         {
@@ -20,10 +22,11 @@ namespace BookStore.API.Middlewares
             try
             {
                 string message = "[Request] HTTP " + context.Request.Method + " - " + context.Request.Path;
-                Console.WriteLine(message);
+               _loggerService.Write(message);
                 await _next(context);  //bir sonraki middleware çağrılmış oldu.	 
                 watch.Stop(); //responce bitiş zamanı
                 message = "[Request] HTTP " + context.Request.Method + " - " + context.Request.Path + " responded " + context.Response.StatusCode + " in " + watch.Elapsed.TotalMilliseconds + "ms";
+                _loggerService.Write(message);
             }
             catch (Exception ex)
             {
@@ -39,6 +42,7 @@ namespace BookStore.API.Middlewares
             //hata durumunda log'a yazacağımız ve geriye döndüreceğimiz mesajı yazıyoruz.
             string message = "[Error] HTTP " + context.Request.Method + " - " + context.Response.StatusCode + " Error Message "
                 + ex.Message + " in " + watch.Elapsed.TotalMilliseconds + "ms";
+            _loggerService.Write(message);
            
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
