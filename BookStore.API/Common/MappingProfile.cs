@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using BookStore.API.Application.AuthorOperations.Commands.CreateAuthor;
+using BookStore.API.Application.AuthorOperations.Queries.GetAuthorDetail;
+using BookStore.API.Application.AuthorOperations.Queries.GetAuthors;
 using BookStore.API.Application.BookOperations.Queries.GetBookDetail;
 using BookStore.API.Application.BookOperations.Queries.GetBooks;
 using BookStore.API.Entities;
@@ -17,6 +20,14 @@ namespace BookStore.API.Common
             CreateMap<Book,BooksViewModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => (src.Genre.Name)));
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
+
+
+            CreateMap<Author, AuthorViewModel>();
+            CreateMap<Author, AuthorDetailViewModel>()
+            .ForMember(dest => dest.Book, opt => opt.MapFrom(src => src.Book.Title));
+
+            CreateMap<CreateAuthorModel, Author>();
+
         }
     }
 }

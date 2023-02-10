@@ -27,6 +27,34 @@ namespace BookStore.API.DBOperations
                     Name = "Romance"
                 }
                 );
+                context.Authors.AddRange(
+                    new Author
+                    {
+                        Name = "AuthorName1",
+                        LastName = "AuthorLastName1",
+                        DateOfBirth = new DateTime(1996, 06, 07),
+                        BookId = 1
+
+
+                    },
+                    new Author
+                    {
+                        Name = "AuthorName2",
+                        LastName = "AuthorLastName2",
+                        DateOfBirth = new DateTime(1997, 11, 24),
+                        BookId = 2
+
+                    },
+                    new Author
+                    {
+                        Name = "AuthorName3",
+                        LastName = "AuthorLastName3",
+                        DateOfBirth = new DateTime(1998, 10, 24),
+                        BookId = 3
+
+                    }
+
+                );
 
                 context.Books.AddRange(
                     new Book
