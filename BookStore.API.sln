@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.API", "BookStore.API\BookStore.API.csproj", "{4CDE2A11-8822-4E90-B8C2-E7EFBF4D6F27}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{795D09E3-B27D-4BFE-AFA5-0AFB4EDFB431}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.API.UnitTests", "BookStore.API.UnitTests\BookStore.API.UnitTests.csproj", "{7B384573-0FB5-4323-A8C9-F9A32138CAC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.API", "BookStore.API\BookStore.API.csproj", "{6DCC6E9E-B8E0-4DE6-85ED-86D19973F3B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +15,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4CDE2A11-8822-4E90-B8C2-E7EFBF4D6F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CDE2A11-8822-4E90-B8C2-E7EFBF4D6F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CDE2A11-8822-4E90-B8C2-E7EFBF4D6F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CDE2A11-8822-4E90-B8C2-E7EFBF4D6F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B384573-0FB5-4323-A8C9-F9A32138CAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B384573-0FB5-4323-A8C9-F9A32138CAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B384573-0FB5-4323-A8C9-F9A32138CAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B384573-0FB5-4323-A8C9-F9A32138CAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCC6E9E-B8E0-4DE6-85ED-86D19973F3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DCC6E9E-B8E0-4DE6-85ED-86D19973F3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCC6E9E-B8E0-4DE6-85ED-86D19973F3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DCC6E9E-B8E0-4DE6-85ED-86D19973F3B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B384573-0FB5-4323-A8C9-F9A32138CAC8} = {795D09E3-B27D-4BFE-AFA5-0AFB4EDFB431}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1F56383-AFFF-4062-880D-BEE2DBE820A9}
