@@ -4,9 +4,9 @@ namespace BookStore.API.Application.GenreOperations.Commands.UpdateGenre
 {
     public class UpdateGenreCommand
     {
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public UpdateGenreCommand(BookStoreDBContext context)
+        public UpdateGenreCommand(IBookStoreDbContext context)
         {
             _context = context;
         }

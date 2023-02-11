@@ -5,9 +5,9 @@ namespace BookStore.API.Application.GenreOperations.Commands.CreateGenre
     public class CreateGenreCommand
     {
         public CreateGenreModel Model { get; set; }
-        private readonly BookStoreDBContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public CreateGenreCommand(BookStoreDBContext context)
+        public CreateGenreCommand(IBookStoreDbContext context)
         {
             _context = context;
         }
